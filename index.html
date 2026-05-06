@@ -857,7 +857,7 @@ function generarPDF(){
   y+=8;
 
   // ── EMPLEADOS EN PDF ──────────────────────────────────────────────
-  const emps = getEmpleados();
+  const emps = [...document.querySelectorAll('#emp-rows div')].map(d=>d.querySelector('span:last-child')?.textContent||'').filter(n=>n.trim()!='');
   if(emps.length>0){
     y+=8;
     doc.setFillColor(232,87,26);doc.rect(ML,y,PW-ML*2,5,'F');
