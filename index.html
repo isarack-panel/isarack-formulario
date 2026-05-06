@@ -729,6 +729,11 @@ const fmtFecha=s=>{if(!s)return'';const[y,m,d]=s.split('-');return`${d}/${m}/${y
 
 // GENERAR PDF
 function generarPDF(){
+  try{
+  if(!window.jspdf || !window.jspdf.jsPDF){
+    alert('Error: jsPDF no cargó. Intenta recargar la página.');
+    return;
+  }
   const {jsPDF}=window.jspdf;
   const doc=new jsPDF({orientation:'portrait',unit:'pt',format:'letter'});
   const PW=612,PH=792,ML=28,MR=28,UW=PW-ML-MR;
@@ -914,15 +919,29 @@ function generarPDF(){
   const fecha=gv('fecha')||new Date().toISOString().split('T')[0];
   const fname=`Entrega_${pedido}_${fecha}.pdf`;
 
-  document.getElementById('btn-dl').onclick=()=>{const a=document.createElement('a');a.href=url;a.download=fname;a.click();};
-  document.getElementById('btn-wsp').onclick=()=>{
-    document.getElementById('btn-dl').click();
-    setTimeout(()=>{
+  // Descargar directamente
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=fname;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // También mostrar el modal si existe
+  const modal=document.getElementById('modal');
+  if(modal){
+    document.getElementById('btn-dl').onclick=()=>{const a2=document.createElement('a');a2.href=url;a2.download=fname;a2.click();};
+    document.getElementById('btn-wsp').onclick=()=>{
       const msg=`📋 *Entrega/Recepción ISA RACK*\nPedido: ${gv('pedido')||'-'}\nFecha: ${fmtFecha(gv('fecha'))}\nSupervisor: ${gv('supervisor')||'-'}\n\n_Adjunta el PDF descargado al chat_`;
       window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(msg),'_blank');
-    },600);
-  };
-  document.getElementById('modal').classList.add('show');
+    };
+    modal.classList.add('show');
+  }
+
+  } catch(err){
+    alert('Error al generar PDF: ' + err.message);
+    console.error(err);
+  }
 }
 
 // Hex helpers
