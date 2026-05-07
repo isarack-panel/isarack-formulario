@@ -476,6 +476,23 @@ body{font-family:'Barlow',sans-serif;background:#EFEFED;color:var(--dark);min-he
 .bcer{background:var(--light);color:var(--gray);border:none;padding:12px;border-radius:12px;font-size:14px;cursor:pointer;}
 
 /* EMPLEADOS */
+
+/* ADMIN PANEL */
+.admin-btn{position:fixed;bottom:20px;right:20px;background:var(--dark);color:#fff;border:none;border-radius:50%;width:48px;height:48px;font-size:22px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:300;}
+.admin-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:400;align-items:center;justify-content:center;}
+.admin-modal-bg.show{display:flex;}
+.admin-modal{background:#fff;border-radius:18px;padding:24px;width:94%;max-width:420px;max-height:85vh;display:flex;flex-direction:column;gap:14px;}
+.admin-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--dark);}
+.admin-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:6px;}
+.admin-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:13px;font-weight:600;color:var(--dark);}
+.admin-item button{background:none;border:none;color:#e53935;font-size:17px;cursor:pointer;padding:0 4px;}
+.admin-add{display:flex;gap:8px;}
+.admin-add input{flex:1;border:1.5px solid var(--border);border-radius:9px;padding:9px 12px;font-size:13px;font-family:'Barlow',sans-serif;}
+.admin-add input:focus{outline:none;border-color:var(--orange);}
+.admin-add button{background:var(--orange);color:#fff;border:none;border-radius:9px;padding:9px 14px;font-size:20px;cursor:pointer;}
+.admin-casco{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);margin-top:-6px;}
+.admin-casco input{accent-color:var(--orange);}
+.admin-save{background:var(--dark);color:#fff;border:none;border-radius:12px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.5px;}
 </style>
 </head>
 <body>
@@ -534,107 +551,7 @@ body{font-family:'Barlow',sans-serif;background:#EFEFED;color:var(--dark);min-he
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;">Personal disponible</div>
       <div style="font-size:12px;color:var(--mid);margin-bottom:14px;">Selecciona los que participaron en este proyecto</div>
       <div style="overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:6px;margin-bottom:14px;" id="emp-checkboxes">
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="FUENTES SANTANA FERNANDO" style="width:16px;height:16px;accent-color:var(--orange);">
-          FUENTES SANTANA FERNANDO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="JARQUIN CRUZ LUIS OCTAVIO" style="width:16px;height:16px;accent-color:var(--orange);">
-          JARQUIN CRUZ LUIS OCTAVIO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="MARTINEZ GARCIA BRYAN ALEXIS" style="width:16px;height:16px;accent-color:var(--orange);">
-          MARTINEZ GARCIA BRYAN ALEXIS
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="MAZARIEGOS ROBLERO ABEL GUADALUPE" style="width:16px;height:16px;accent-color:var(--orange);">
-          MAZARIEGOS ROBLERO ABEL GUADALUPE
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="MIRANDA TALAVERA JOSE ALBERTO" style="width:16px;height:16px;accent-color:var(--orange);">
-          MIRANDA TALAVERA JOSE ALBERTO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="OCHOA PEREZ OSCAR FRANCISCO" style="width:16px;height:16px;accent-color:var(--orange);">
-          OCHOA PEREZ OSCAR FRANCISCO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="OSUNA DERAZ JOSE ALFREDO" style="width:16px;height:16px;accent-color:var(--orange);">
-          OSUNA DERAZ JOSE ALFREDO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="PACHECO DIAZ JOSE ALBERTO" style="width:16px;height:16px;accent-color:var(--orange);">
-          PACHECO DIAZ JOSE ALBERTO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="ROMERO VINAGRE ISAAC" style="width:16px;height:16px;accent-color:var(--orange);">
-          ROMERO VINAGRE ISAAC
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="SAÑUDO CORTEZ JONAS" style="width:16px;height:16px;accent-color:var(--orange);">
-          SAÑUDO CORTEZ JONAS
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="SOLIS NAVARRO GERARDO" style="width:16px;height:16px;accent-color:var(--orange);">
-          SOLIS NAVARRO GERARDO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="SOLORZANO IZQUIERDO ADRIAN" style="width:16px;height:16px;accent-color:var(--orange);">
-          SOLORZANO IZQUIERDO ADRIAN
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="SOTO HERNANDEZ JOEL" style="width:16px;height:16px;accent-color:var(--orange);">
-          SOTO HERNANDEZ JOEL
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="VELAZQUEZ AGUILAR DELMAR" style="width:16px;height:16px;accent-color:var(--orange);">
-          VELAZQUEZ AGUILAR DELMAR
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);">
-          <input type="checkbox" class="emp-cb" value="VELAZQUEZ ROBLERO CRISTIAN ESTEBAN" style="width:16px;height:16px;accent-color:var(--orange);">
-          VELAZQUEZ ROBLERO CRISTIAN ESTEBAN
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 GILBERTO RODRIGUEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 GILBERTO RODRIGUEZ
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 ISRAEL MENDEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 ISRAEL MENDEZ
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 ALEXIS GUADALUPE" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 ALEXIS GUADALUPE
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 DANIEL HERRERA" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 DANIEL HERRERA
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 BRAYAN ROMO" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 BRAYAN ROMO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 JESUS MENDEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 JESUS MENDEZ
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 JULIO ORTEGA" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 JULIO ORTEGA
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 ANGEL ULICES RODRIGUEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 ANGEL ULICES RODRIGUEZ
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 LUIS GABRIEL CORNEJO" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 LUIS GABRIEL CORNEJO
-        </label>
-        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
-          <input type="checkbox" class="emp-cb" value="🪖 JUAN MANUEL HERNANDEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
-          🪖 JUAN MANUEL HERNANDEZ
-        </label>
-      </div>
+</div>
       <div style="display:flex;gap:8px;">
         <button class="bdl" style="flex:1;" onclick="confirmarEmpleados()">✔ Confirmar</button>
         <button class="bcer" onclick="document.getElementById('modal-emp').classList.remove('show')">Cancelar</button>
@@ -1030,6 +947,106 @@ function drawHexHalf(doc,cx,cy,r,color){
   // Inicializar con 10 renglones vacíos
   renderEmpleados([]);
 
+  // ── ADMINISTRACIÓN DE PERSONAL ─────────────────────────────────────
+  const EMP_KEY = 'isarack_empleados';
+  const EMP_DEFAULT = ["FUENTES SANTANA FERNANDO", "JARQUIN CRUZ LUIS OCTAVIO", "MARTINEZ GARCIA BRYAN ALEXIS", "MAZARIEGOS ROBLERO ABEL GUADALUPE", "MIRANDA TALAVERA JOSE ALBERTO", "OCHOA PEREZ OSCAR FRANCISCO", "OSUNA DERAZ JOSE ALFREDO", "PACHECO DIAZ JOSE ALBERTO", "ROMERO VINAGRE ISAAC", "SAÑUDO CORTEZ JONAS", "SOLIS NAVARRO GERARDO", "SOLORZANO IZQUIERDO ADRIAN", "SOTO HERNANDEZ JOEL", "VELAZQUEZ AGUILAR DELMAR", "VELAZQUEZ ROBLERO CRISTIAN ESTEBAN", "🪖 GILBERTO RODRIGUEZ", "🪖 ISRAEL MENDEZ", "🪖 ALEXIS GUADALUPE", "🪖 DANIEL HERRERA", "🪖 BRAYAN ROMO", "🪖 JESUS MENDEZ", "🪖 JULIO ORTEGA", "🪖 ANGEL ULICES RODRIGUEZ", "🪖 LUIS GABRIEL CORNEJO", "🪖 JUAN MANUEL HERNANDEZ"];
+
+  function cargarEmpleados(){
+    const guardados = localStorage.getItem(EMP_KEY);
+    return guardados ? JSON.parse(guardados) : EMP_DEFAULT;
+  }
+
+  function guardarEmpleadosLS(lista){
+    localStorage.setItem(EMP_KEY, JSON.stringify(lista));
+  }
+
+  function renderModalEmpleados(){
+    const lista = cargarEmpleados();
+    const cont = document.getElementById('emp-checkboxes');
+    cont.innerHTML = '';
+    lista.forEach(emp => {
+      const casco = emp.startsWith('🪖');
+      const label = document.createElement('label');
+      label.style.cssText = casco
+        ? 'display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;'
+        : 'display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);';
+      label.innerHTML = `<input type="checkbox" class="emp-cb" value="${emp}" style="width:16px;height:16px;accent-color:var(--orange);"> ${emp}`;
+      cont.appendChild(label);
+    });
+  }
+
+  function abrirAdmin(){
+    const lista = cargarEmpleados();
+    const adminList = document.getElementById('admin-list');
+    adminList.innerHTML = '';
+    lista.forEach((emp, i) => {
+      const div = document.createElement('div');
+      div.className = 'admin-item';
+      div.innerHTML = `<span>${emp}</span><button onclick="eliminarEmpleadoAdmin(${i})" title="Eliminar">🗑️</button>`;
+      adminList.appendChild(div);
+    });
+    document.getElementById('admin-nuevo').value = '';
+    document.getElementById('admin-casco').checked = false;
+    document.getElementById('modal-admin').classList.add('show');
+  }
+
+  function eliminarEmpleadoAdmin(idx){
+    const lista = cargarEmpleados();
+    const nombre = lista[idx];
+    if(confirm(`¿Eliminar a ${nombre}?`)){
+      lista.splice(idx, 1);
+      guardarEmpleadosLS(lista);
+      abrirAdmin();
+      renderModalEmpleados();
+    }
+  }
+
+  function agregarEmpleadoAdmin(){
+    const input = document.getElementById('admin-nuevo');
+    const casco = document.getElementById('admin-casco').checked;
+    const nombre = input.value.trim().toUpperCase();
+    if(!nombre) return;
+    const lista = cargarEmpleados();
+    const nombreFinal = casco ? '🪖 ' + nombre : nombre;
+    if(lista.includes(nombreFinal)){ alert('Ese empleado ya existe'); return; }
+    lista.push(nombreFinal);
+    guardarEmpleadosLS(lista);
+    input.value = '';
+    document.getElementById('admin-casco').checked = false;
+    abrirAdmin();
+    renderModalEmpleados();
+  }
+
+  function guardarAdmin(){
+    renderModalEmpleados();
+    document.getElementById('modal-admin').classList.remove('show');
+  }
+
+  // Inicializar con lista guardada (o default)
+  renderModalEmpleados();
+
+
 </script>
+
+<!-- BOTÓN ADMIN -->
+<button class="admin-btn" onclick="abrirAdmin()" title="Administrar personal">⚙️</button>
+
+<!-- MODAL ADMIN -->
+<div class="admin-modal-bg" id="modal-admin">
+  <div class="admin-modal">
+    <div class="admin-title">⚙️ Administrar Personal</div>
+    <div class="admin-list" id="admin-list"></div>
+    <div class="admin-add">
+      <input type="text" id="admin-nuevo" placeholder="Nombre del empleado..." onkeydown="if(event.key==='Enter')agregarEmpleadoAdmin()">
+      <button onclick="agregarEmpleadoAdmin()">+</button>
+    </div>
+    <label class="admin-casco">
+      <input type="checkbox" id="admin-casco"> 🪖 Marcar como operador (casco)
+    </label>
+    <button class="admin-save" onclick="guardarAdmin()">💾 Guardar cambios</button>
+    <button class="bcer" onclick="document.getElementById('modal-admin').classList.remove('show')">Cancelar</button>
+  </div>
+</div>
+
 </body>
 </html>
