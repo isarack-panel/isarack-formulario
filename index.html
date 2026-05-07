@@ -594,6 +594,46 @@ body{font-family:'Barlow',sans-serif;background:#EFEFED;color:var(--dark);min-he
           <input type="checkbox" class="emp-cb" value="VELAZQUEZ ROBLERO CRISTIAN ESTEBAN" style="width:16px;height:16px;accent-color:var(--orange);">
           VELAZQUEZ ROBLERO CRISTIAN ESTEBAN
         </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 GILBERTO RODRIGUEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 GILBERTO RODRIGUEZ
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 ISRAEL MENDEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 ISRAEL MENDEZ
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 ALEXIS GUADALUPE" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 ALEXIS GUADALUPE
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 DANIEL HERRERA" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 DANIEL HERRERA
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 BRAYAN ROMO" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 BRAYAN ROMO
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 JESUS MENDEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 JESUS MENDEZ
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 JULIO ORTEGA" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 JULIO ORTEGA
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 ANGEL ULICES RODRIGUEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 ANGEL ULICES RODRIGUEZ
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 LUIS GABRIEL CORNEJO" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 LUIS GABRIEL CORNEJO
+        </label>
+        <label style="display:flex;align-items:center;gap:10px;padding:8px 10px;border:1.5px solid #f59e0b;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600;color:var(--gray);background:#fffbeb;">
+          <input type="checkbox" class="emp-cb" value="🪖 JUAN MANUEL HERNANDEZ" style="width:16px;height:16px;accent-color:#f59e0b;">
+          🪖 JUAN MANUEL HERNANDEZ
+        </label>
       </div>
       <div style="display:flex;gap:8px;">
         <button class="bdl" style="flex:1;" onclick="confirmarEmpleados()">✔ Confirmar</button>
@@ -642,10 +682,10 @@ body{font-family:'Barlow',sans-serif;background:#EFEFED;color:var(--dark);min-he
   <div class="modal">
     <div class="ico">✅</div>
     <h2>¡PDF Listo!</h2>
-    <p>Tu formulario de entrega está generado y listo para compartir.</p>
+    <p>Tu PDF se ha descargado. Para compartirlo por WhatsApp, presiona el botón y luego adjunta el archivo desde tu carpeta de descargas.</p>
     <div class="mbtns">
       <button class="bdl" id="btn-dl">⬇️ Descargar PDF</button>
-      <button class="bwsp" id="btn-wsp">💬 Compartir por WhatsApp</button>
+      <button class="bwsp" id="btn-wsp">💬 Abrir WhatsApp</button>
       <button class="bcer" onclick="document.getElementById('modal').classList.remove('show')">Cerrar</button>
     </div>
   </div>
@@ -680,10 +720,7 @@ REVS.forEach(({p,c},i)=>{
         <label for="no${n}">✗ NO CUMPLE</label>
       </div>
     </div>
-    <div class="drow"><span>Días:</span>
-      <div class="dg">${DIAS.map((d,j)=>`<input class="di" type="checkbox" id="d${n}_${j}"><label class="dl" for="d${n}_${j}">${d}</label>`).join('')}</div>
-    </div>
-    <input class="act-in" type="text" id="act${n}" placeholder="Actividades realizadas...">
+    <input class="act-in" type="text" id="act${n}" placeholder="Observaciones...">
   </div></div>`;
 });
 
@@ -798,22 +835,13 @@ function generarPDF(){
   doc.text('PLE',XCMP+CCMP/2,y+11,{align:'center'});
   doc.text('NO',XNCMP+CNCMP/2,y+5,{align:'center'});
   doc.text('CUM.',XNCMP+CNCMP/2,y+11,{align:'center'});
-  doc.text('DURACIÓN DEL PROYECTO',XLUN+CDIA*3,y+6,{align:'center'});
-  doc.text('ACTIV.',XACT+CACT/2,y+6,{align:'center'});
-  doc.text('REALIZ.',XACT+CACT/2,y+11,{align:'center'});
+  doc.text('OBSERVACIONES',XACT+CACT/2,y+8,{align:'center'});
   y+=14;
-
-  // Sub-header dias
-  doc.setFillColor(228,228,228); doc.rect(ML,y,UW,11,'F');
-  doc.setDrawColor(...MG); doc.setLineWidth(0.3); doc.rect(ML,y,UW,11);
-  doc.setFont('helvetica','bold'); doc.setFontSize(6.5); doc.setTextColor(...DK);
-  ['LUN','MAR','MIÉ','JUE','VIE','SÁB'].forEach((d,i)=>doc.text(d,XLUN+i*CDIA+CDIA/2,y+7.5,{align:'center'}));
-  y+=11;
 
   for(let i=1;i<=6;i++){
     doc.setFillColor(...(i%2?WH:LG)); doc.rect(ML,y,UW,RH,'F');
     doc.setDrawColor(...MG); doc.setLineWidth(0.3); doc.rect(ML,y,UW,RH);
-    [XPT,XCR,XCMP,XNCMP,XLUN,...[0,1,2,3,4,5].map(k=>XLUN+(k+1)*CDIA),XACT].forEach(vx=>doc.line(vx,y,vx,y+RH));
+    [XPT,XCR,XCMP,XNCMP,XACT].forEach(vx=>doc.line(vx,y,vx,y+RH));
 
     doc.setFont('helvetica','bold'); doc.setFontSize(11); doc.setTextColor(...OR);
     doc.text(String(i),ML+CP/2,y+RH/2+4,{align:'center'});
@@ -823,11 +851,8 @@ function generarPDF(){
     doc.text(REVS[i-1].c,XCR+3,y+7,{maxWidth:CCR-6});
 
     const sel=document.querySelector(`input[name="r${i}"]:checked`);
-    if(sel?.value==='si'){doc.setTextColor(34,197,94);doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('✓',XCMP+CCMP/2,y+RH/2+5,{align:'center'});}
-    else if(sel?.value==='no'){doc.setTextColor(200,30,30);doc.setFont('helvetica','bold');doc.setFontSize(10);doc.text('NO',XNCMP+CNCMP/2,y+RH/2+4,{align:'center'});}
-    doc.setTextColor(...OR); doc.setFont('helvetica','bold'); doc.setFontSize(10);
-    for(let j=0;j<6;j++){if(document.getElementById(`d${i}_${j}`)?.checked)doc.text('●',XLUN+j*CDIA+CDIA/2,y+RH/2+3,{align:'center'});}
-    const act=gv(`act${i}`);
+    if(sel?.value==='si'){doc.setTextColor(34,139,34);doc.setFont('helvetica','bold');doc.setFontSize(9);doc.text('SI',XCMP+CCMP/2,y+RH/2+4,{align:'center'});}
+    else if(sel?.value==='no'){doc.setTextColor(200,30,30);doc.setFont('helvetica','bold');doc.setFontSize(10);doc.text('NO',XNCMP+CNCMP/2,y+RH/2+4,{align:'center'});}    const act=gv(`act${i}`);
     if(act){doc.setTextColor(...DK);doc.setFont('helvetica','normal');doc.setFontSize(6);doc.text(act,XACT+3,y+RH/2+2,{maxWidth:CACT-6});}
     doc.setTextColor(...DK); y+=RH;
   }
@@ -939,7 +964,7 @@ function generarPDF(){
   if(modal){
     document.getElementById('btn-dl').onclick=()=>{const a2=document.createElement('a');a2.href=url;a2.download=fname;a2.click();};
     document.getElementById('btn-wsp').onclick=()=>{
-      const msg=`📋 *Entrega/Recepción ISA RACK*\nPedido: ${gv('pedido')||'-'}\nFecha: ${fmtFecha(gv('fecha'))}\nSupervisor: ${gv('supervisor')||'-'}\n\n_Adjunta el PDF descargado al chat_`;
+      const msg=`📋 *ENTREGA / RECEPCIÓN ISA RACK*\n\n🔹 Pedido: ${gv('pedido')||'-'}\n🔹 Fecha: ${fmtFecha(gv('fecha'))||'-'}\n🔹 Supervisor: ${gv('supervisor')||'-'}\n🔹 Ejecutivo: ${gv('ejecutivo')||'-'}\n\n📎 _Se adjunta PDF con el reporte completo._`;
       window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(msg),'_blank');
     };
     modal.classList.add('show');
