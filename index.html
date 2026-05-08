@@ -493,6 +493,25 @@ body{font-family:'Barlow',sans-serif;background:#EFEFED;color:var(--dark);min-he
 .admin-casco{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mid);margin-top:-6px;}
 .admin-casco input{accent-color:var(--orange);}
 .admin-save{background:var(--dark);color:#fff;border:none;border-radius:12px;padding:12px;font-family:'Barlow Condensed',sans-serif;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.5px;}
+
+/* HISTORIAL */
+.hist-btn{position:fixed;bottom:76px;right:20px;background:var(--orange);color:#fff;border:none;border-radius:50%;width:48px;height:48px;font-size:20px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:300;}
+.hist-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:400;align-items:center;justify-content:center;}
+.hist-modal-bg.show{display:flex;}
+.hist-modal{background:#fff;border-radius:18px;padding:24px;width:94%;max-width:440px;max-height:85vh;display:flex;flex-direction:column;gap:14px;}
+.hist-title{font-family:'Barlow Condensed',sans-serif;font-size:22px;font-weight:800;color:var(--dark);}
+.hist-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:8px;}
+.hist-item{border:1.5px solid var(--border);border-radius:12px;padding:12px 14px;cursor:pointer;transition:border-color .15s;}
+.hist-item:hover{border-color:var(--orange);}
+.hist-item-top{display:flex;justify-content:space-between;align-items:center;}
+.hist-pedido{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;color:var(--dark);}
+.hist-fecha{font-size:11px;color:var(--mid);}
+.hist-sup{font-size:12px;color:var(--gray);margin-top:3px;}
+.hist-actions{display:flex;gap:6px;margin-top:8px;}
+.hist-actions button{flex:1;padding:7px;border:none;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Barlow',sans-serif;}
+.hist-load{background:var(--dark);color:#fff;}
+.hist-del{background:#fee2e2;color:#e53935;}
+.hist-empty{text-align:center;color:var(--mid);font-size:14px;padding:30px 0;}
 </style>
 </head>
 <body>
@@ -868,6 +887,9 @@ function generarPDF(){
   const fecha=gv('fecha')||new Date().toISOString().split('T')[0];
   const fname=`Entrega_${pedido}_${fecha}.pdf`;
 
+  // Guardar en historial
+  guardarEnHistorial();
+
   // Descargar directamente
   const a=document.createElement('a');
   a.href=url;
@@ -946,6 +968,121 @@ function drawHexHalf(doc,cx,cy,r,color){
 
   // Inicializar con 10 renglones vacíos
   renderEmpleados([]);
+
+  // ── HISTORIAL DE FORMULARIOS ───────────────────────────────────────
+  const HIST_KEY = 'isarack_historial';
+
+  function guardarEnHistorial(){
+    const hist = JSON.parse(localStorage.getItem(HIST_KEY)||'[]');
+    const registro = {
+      id: Date.now(),
+      pedido:     gv('pedido')||'-',
+      fecha:      gv('fecha')||'-',
+      supervisor: gv('supervisor')||'-',
+      ejecutivo:  gv('ejecutivo')||'-',
+      tipo:       gv('tipo')||'-',
+      alcance:    gv('alcance')||'-',
+      personal:   [...(_empSeleccionados||[])],
+      revisiones: Array.from({length:6},(_,i)=>({
+        resultado: document.querySelector(`input[name="r${i+1}"]:checked`)?.value||'',
+        obs: gv('act'+(i+1))
+      })),
+      incidencias: Array.from({length:3},(_,i)=>({
+        tipo: gv('it'+(i+1)), com: gv('ic'+(i+1)),
+        acc: gv('ia'+(i+1)), rev: gv('ir'+(i+1))
+      })),
+      resp_cli:  gv('resp_cli'),  puesto_cli:  gv('puesto_cli'),
+      resp_isa:  gv('resp_isa'),  puesto_isa:  gv('puesto_isa'),
+      generado:  new Date().toLocaleString('es-MX')
+    };
+    hist.unshift(registro);
+    // Máximo 50 registros
+    if(hist.length > 50) hist.pop();
+    localStorage.setItem(HIST_KEY, JSON.stringify(hist));
+  }
+
+  function abrirHistorial(){
+    const hist = JSON.parse(localStorage.getItem(HIST_KEY)||'[]');
+    const cont = document.getElementById('hist-list');
+    cont.innerHTML = '';
+    if(hist.length === 0){
+      cont.innerHTML = '<div class="hist-empty">No hay formularios guardados aún.<br>Se guardan automáticamente al generar el PDF.</div>';
+    } else {
+      hist.forEach((r,i) => {
+        const div = document.createElement('div');
+        div.className = 'hist-item';
+        div.innerHTML = `
+          <div class="hist-item-top">
+            <span class="hist-pedido">📋 ${r.pedido}</span>
+            <span class="hist-fecha">${r.generado}</span>
+          </div>
+          <div class="hist-sup">👷 ${r.supervisor} &nbsp;|&nbsp; 📅 ${r.fecha}</div>
+          <div class="hist-actions">
+            <button class="hist-load" onclick="cargarRegistro(${i})">🔄 Cargar y regenerar PDF</button>
+            <button class="hist-del"  onclick="eliminarRegistro(${i})">🗑️ Eliminar</button>
+          </div>`;
+        cont.appendChild(div);
+      });
+    }
+    document.getElementById('modal-hist').classList.add('show');
+  }
+
+  function cargarRegistro(idx){
+    const hist = JSON.parse(localStorage.getItem(HIST_KEY)||'[]');
+    const r = hist[idx];
+    if(!r) return;
+
+    // Llenar campos
+    document.getElementById('pedido').value     = r.pedido !== '-' ? r.pedido : '';
+    document.getElementById('fecha').value      = r.fecha  !== '-' ? r.fecha  : '';
+    document.getElementById('supervisor').value = r.supervisor !== '-' ? r.supervisor : '';
+    document.getElementById('ejecutivo').value  = r.ejecutivo  !== '-' ? r.ejecutivo  : '';
+    document.getElementById('tipo').value       = r.tipo   !== '-' ? r.tipo   : '';
+    document.getElementById('alcance').value    = r.alcance!== '-' ? r.alcance: '';
+    document.getElementById('resp_cli').value   = r.resp_cli  ||'';
+    document.getElementById('puesto_cli').value = r.puesto_cli||'';
+    document.getElementById('resp_isa').value   = r.resp_isa  ||'';
+    document.getElementById('puesto_isa').value = r.puesto_isa||'';
+
+    // Personal
+    renderEmpleados(r.personal||[]);
+    _empSeleccionados = r.personal||[];
+
+    // Revisiones
+    (r.revisiones||[]).forEach((rev,i)=>{
+      const n=i+1;
+      if(rev.resultado){
+        const rb = document.getElementById((rev.resultado==='si'?'si':'no')+n);
+        if(rb) rb.checked = true;
+      }
+      const actEl = document.getElementById('act'+n);
+      if(actEl) actEl.value = rev.obs||'';
+    });
+
+    // Incidencias
+    (r.incidencias||[]).forEach((inc,i)=>{
+      const n=i+1;
+      const set=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||'';};
+      set('it'+n,inc.tipo); set('ic'+n,inc.com);
+      set('ia'+n,inc.acc);  set('ir'+n,inc.rev);
+    });
+
+    document.getElementById('modal-hist').classList.remove('show');
+    // Scroll arriba
+    window.scrollTo({top:0,behavior:'smooth'});
+    // Generar PDF automáticamente
+    setTimeout(()=>generarPDF(), 400);
+  }
+
+  function eliminarRegistro(idx){
+    const hist = JSON.parse(localStorage.getItem(HIST_KEY)||'[]');
+    if(confirm(`¿Eliminar el registro de pedido "${hist[idx]?.pedido}"?`)){
+      hist.splice(idx,1);
+      localStorage.setItem(HIST_KEY, JSON.stringify(hist));
+      abrirHistorial();
+    }
+  }
+
 
   // ── ADMINISTRACIÓN DE PERSONAL ─────────────────────────────────────
   const EMP_KEY = 'isarack_empleados';
@@ -1027,6 +1164,19 @@ function drawHexHalf(doc,cx,cy,r,color){
 
 
 </script>
+
+
+<!-- BOTÓN HISTORIAL -->
+<button class="hist-btn" onclick="abrirHistorial()" title="Historial de PDFs">🕐</button>
+
+<!-- MODAL HISTORIAL -->
+<div class="hist-modal-bg" id="modal-hist">
+  <div class="hist-modal">
+    <div class="hist-title">🕐 Historial de Formularios</div>
+    <div class="hist-list" id="hist-list"></div>
+    <button class="bcer" onclick="document.getElementById('modal-hist').classList.remove('show')">Cerrar</button>
+  </div>
+</div>
 
 <!-- BOTÓN ADMIN -->
 <button class="admin-btn" onclick="abrirAdmin()" title="Administrar personal">⚙️</button>
