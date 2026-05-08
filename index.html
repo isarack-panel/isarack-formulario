@@ -496,6 +496,7 @@ body{font-family:'Barlow',sans-serif;background:#EFEFED;color:var(--dark);min-he
 
 /* HISTORIAL */
 .hist-btn{position:fixed;bottom:76px;right:20px;background:var(--orange);color:#fff;border:none;border-radius:50%;width:48px;height:48px;font-size:20px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.4);z-index:300;}
+@media(max-width:768px){.hist-btn{display:none;}}
 .hist-modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:400;align-items:center;justify-content:center;}
 .hist-modal-bg.show{display:flex;}
 .hist-modal{background:#fff;border-radius:18px;padding:24px;width:94%;max-width:440px;max-height:85vh;display:flex;flex-direction:column;gap:14px;}
